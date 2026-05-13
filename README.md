@@ -1,61 +1,33 @@
-# summer2026-verilog-projects
-# 4-bit and 8-bit Arithmetic Logic Unit
+# Verilog FPGA Portfolio
 
-A combinational ALU implemented in Verilog, supporting 8 operations
-selected by a 3-bit opcode, with zero and carry status flags.
+Self-directed FPGA and digital design work completed during summer 2026.
+Projects are built in Verilog HDL, simulated on EDA Playground and Vivado,
+and deployed to the Digilent Basys 3 board (Xilinx Artix-7 XC7A35T).
 
-## Interface
+## Projects
 
-| Signal | Width | Direction | Description |
-|--------|-------|-----------|-------------|
-| `a` | 4 (or 8) | input | First operand |
-| `b` | 4 (or 8) | input | Second operand |
-| `opcode` | 3 | input | Operation selector |
-| `result` | 4 (or 8) | output | Operation result |
-| `zero` | 1 | output | High when result == 0 |
-| `carry` | 1 | output | Arithmetic carry / shift-out bit |
+| # | Project | Status | Description |
+|---|---------|--------|-------------|
+| 1 | [4-bit and 8-bit ALU](./01-alu) | In progress | Combinational arithmetic logic unit with 8 operations and status flags |
+| 2 | Traffic light FSM | Planned | Moore state machine with pedestrian button and debounce logic |
+| 3 | Digital buck converter controller | Planned | PWM generator, PI compensator, soft-start, and protection logic |
 
-## Operations
+## Tools
 
-| Opcode | Operation | Description |
-|--------|-----------|-------------|
-| 3'b000 | ADD | result = a + b, carry on overflow |
-| 3'b001 | SUB | result = a - b, carry on borrow |
-| 3'b010 | AND | result = a & b |
-| 3'b011 | OR | result = a \| b |
-| 3'b100 | XOR | result = a ^ b |
-| 3'b101 | NOT | result = ~a (b ignored) |
-| 3'b110 | SHL | result = a << 1, carry = a[MSB] |
-| 3'b111 | SHR | result = a >> 1, carry = a[0] |
+- **HDL:** Verilog
+- **Simulation:** EDA Playground (Icarus Verilog), Vivado Simulator
+- **Synthesis:** Xilinx Vivado 2024.x (WebPACK edition)
+- **Target hardware:** Digilent Basys 3 (Xilinx Artix-7)
+- **Version control:** Git, GitHub
+- **Editor:** VS Code with Verilog-HDL extension
 
-## Files
+## About
 
-- `alu.v` — ALU module
-- `alu_tb.v` — Self-checking testbench
-- `waveforms/` — Simulation waveform screenshots
+I'm an electrical engineering undergraduate at Texas A&M University.
+These projects are self-directed learning outside of coursework,
+focused on digital design and digital power electronics.
 
-## Running the simulation
+## Contact
 
-On EDA Playground:
-1. Open [project link]
-2. Click "Run"
-3. Testbench reports PASS/FAIL for 24 test cases
-
-Locally with Icarus Verilog:
-```bash
-iverilog -o alu_sim alu.v alu_tb.v
-vvp alu_sim
-```
-
-## Verification
-
-The testbench covers all 8 opcodes with at least 3 input combinations each,
-including edge cases (a=0, b=0, maximum values, intentional overflow conditions).
-All 24+ test cases pass with PASS/FAIL output via `$display`.
-
-## Notes on design choices
-
-- Used a `case` statement with a `default` clause to prevent latch inference
-- Carry computed via 5-bit (or 9-bit) intermediate to capture overflow naturally
-- All outputs declared `reg` since they are assigned inside an `always @(*)` block
-
+- LinkedIn: [your-linkedin-url]
+- Email: [your-email]
